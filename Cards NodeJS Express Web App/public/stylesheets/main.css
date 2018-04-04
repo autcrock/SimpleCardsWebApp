@@ -3,6 +3,53 @@
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em;
+    width: 100%;
+    border: 1px solid gray;
+}
+
+
+.inputarea {
+    margin: 1em;
+    border: 1em solid powderblue;
+    background-color: powderblue;
+}
+
+input:invalid + span:after {
+    content: '✖';
+    padding-left: 5px;
+}
+
+input:valid + span:after {
+    content: '✓';
+    padding-left: 5px;
+}
+
+.cardtable {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1em;
+    background-color: darkseagreen;
+}
+
+.player {
+    float: left;
+    margin: 1em;
+    background-color: palegoldenrod;
+    width: 100px;
+    height: 100px;
+}
+
+.card {
+    margin: 1px;
+    background-color: goldenrod;
+    width: 15px;
+    height: 90px;
+}
+
 a {
     color: #00B7FF;
 }

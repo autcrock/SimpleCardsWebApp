@@ -1,4 +1,5 @@
 ﻿var assert = require('assert');
+var cards = require('../lib/CardSupport');
 
 describe('Test Suite 1', function () {
     it('Test 1', function () {

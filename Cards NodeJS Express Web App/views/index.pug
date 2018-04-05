@@ -5,34 +5,22 @@ block content
   .container
     .inputarea
         h1=title
-        <form>
+        <form method="get" action="/shuffle?">
             <div>
                 <label>Enter the number of players (at least 1 and no more than 10:</label>
-                <input id="players" type="number" name="players" min="1" max="5" required>
+                <input id="players" type="number" name="players" min="1" max="10" required>
                 <span class="validity"></span>
             </div>
             <div>
-                <input type="submit" onClick=>
+                <input type="submit">
             </div>
         </form>
-    .cardtable
-        .player
-            <label>Player 1</label>
-        .player
-            <label>Player 2</label>
-        .player
-            <label>Player 3</label>
-        .player
-            <label>Player 4</label>
-        .player
-            <label>Player 5</label>
-        .player
-            <label>Player 6</label>
-        .player
-            <label>Player 7</label>
-        .player
-            <label>Player 8</label>
-        .player
-            <label>Player 9</label>
-        .player
-            <label>Player 10</label>
+    if dealtCardsPerUser
+        .cardtable
+        -   let dealt = dealtCardsPerUser;
+        -   let result = JSON.parse(dealt);
+        -   let hands = result.handsByPlayerNumber;
+            each playerHand, playerIndex in hands
+                .player
+                    p Player: #{playerIndex} scored: #{playerHand.score}
+                    p Hand: #{playerHand.thisHand}

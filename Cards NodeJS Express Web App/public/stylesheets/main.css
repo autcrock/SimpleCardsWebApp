@@ -35,19 +35,38 @@ input:valid + span:after {
     background-color: darkseagreen;
 }
 
+.dealer {
+    float: left;
+    margin: 1em;
+    border: 1em solid gold;
+    background-color: gold;
+}
+
 .player {
     float: left;
     margin: 1em;
+    border: 1em solid palegoldenrod;
     background-color: palegoldenrod;
-    width: 100px;
-    height: 100px;
 }
 
-.card {
+.scoringtrump {
+    margin: 1px;
+    background-color: gold;
+}
+
+.zerotrump {
+    margin: 1px;
+    background-color: lightgoldenrodyellow;
+}
+
+.scoringcard {
     margin: 1px;
     background-color: goldenrod;
-    width: 15px;
-    height: 90px;
+}
+
+.zerocard {
+    margin: 1px;
+    background-color: darkgrey;
 }
 
 a {

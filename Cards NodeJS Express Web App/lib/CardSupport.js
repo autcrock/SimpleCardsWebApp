@@ -82,17 +82,23 @@ function swapArrayElements(a, i, j) {
 // https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle
 
 function fisherYatesInPlace(items) {
-    var itemsToGo = items.length;
+    let itemsToGo = items.length;
     while (itemsToGo > 0) {
-        var itemToSwap = Math.floor(Math.random() * itemsToGo--);
+        const itemToSwap = Math.floor(Math.random() * itemsToGo--);
         swapArrayElements(items, itemToSwap, itemsToGo);
     }
     return items;
 }
 
 function addUp(trumps, hand) {
-    const values = hand.map(function (card) { return card.suit == trumps ? card.value * 2 : card.value });
-    const total = values.reduce(function (cumulateValue, nextValue) { return cumulateValue + nextValue }, 0);
+    const values = hand.map(function(card) {
+        return card.suit === trumps ? card.value * 2 : card.value;
+    });
+
+    const total = values.reduce(function(cumulateValue, nextValue) {
+        return cumulateValue + nextValue;
+    }, 0);
+
     return total;
 }
 
@@ -100,18 +106,22 @@ function cardSupport() {
     this.getAndStoreDealFor = function (numberOfPlayers) {
         let theDeck = deck();
         const shuffledDeck = fisherYatesInPlace(theDeck);
-        const trumps = shuffledDeck[0].suit;
+        const trumps = shuffledDeck[0];
+        const trumpSuit = trumps.suit;
         let hands = [];
 
         for (let handIndex = 0; handIndex < numberOfPlayers; handIndex++) {
             const thisHand = dealToPlayer(handIndex, shuffledDeck);
-            const thisScore = addUp(trumps, thisHand);
-            hands[handIndex] = {hand: thisHand, score: thisScore};
+            const thisScore = addUp(trumpSuit, thisHand);
+            const sortedHand = thisHand.sort((a, b) => b.score(trumpSuit) - a.score(trumpSuit));
+            hands[handIndex] = {hand: sortedHand, score: thisScore};
         }
+
+        const sortedHands = hands.sort((a, b) => b.score - a.score);
 
         return {
             "trumps": trumps,
-            "handsByPlayerNumber": hands
+            "handsByPlayerNumber": sortedHands
         }
     }
 }

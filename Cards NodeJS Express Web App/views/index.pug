@@ -17,10 +17,30 @@ block content
         </form>
     if dealtCardsPerUser
         .cardtable
-        -   let dealt = dealtCardsPerUser;
-        -   let result = JSON.parse(dealt);
-        -   let hands = result.handsByPlayerNumber;
-            each playerHand, playerIndex in hands
-                .player
-                    p Player: #{playerIndex} scored: #{playerHand.score}
-                    p Hand: #{playerHand.thisHand}
+            -   let dealt = dealtCardsPerUser;
+            -   let result = JSON.parse(dealt);
+            -   let trumps = result.trumps;
+            -   let hands = result.handsByPlayerNumber;
+                .dealer
+                    p Dealer holding trump:
+                    p       #{trumps.name} of #{trumps.suit} 
+                each playerHand, playerIndex in hands
+                    .player
+                        p Player: #{playerIndex} scored: #{playerHand.score}
+                        p Hand:
+                        each card in playerHand.hand
+                            if (card.suit === trumps.suit)
+                                - let score = card.value * 2;
+                                if score === 0
+                                    .zerotrump
+                                            p #{card.name} of #{card.suit} (#{score}) 
+                                else
+                                    .scoringtrump
+                                            p #{card.name} of #{card.suit} (#{score}) 
+                            else
+                                if card.value === 0
+                                    .zerocard
+                                        p #{card.name} of #{card.suit} (#{card.value}) 
+                                else
+                                    .scoringcard
+                                        p #{card.name} of #{card.suit} (#{card.value}) 

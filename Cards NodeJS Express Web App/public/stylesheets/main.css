@@ -42,6 +42,13 @@ input:valid + span:after {
     background-color: gold;
 }
 
+.winner {
+    float: left;
+    margin: 1em;
+    border: 1em solid red;
+    background-color: palegoldenrod;
+}
+
 .player {
     float: left;
     margin: 1em;

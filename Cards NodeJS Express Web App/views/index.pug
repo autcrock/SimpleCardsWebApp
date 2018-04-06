@@ -5,6 +5,7 @@ block content
   .container
     .inputarea
         h1=title
+
         <form method="get" action="/shuffle?">
             <div>
                 <label>Enter the number of players (at least 1 and no more than 10:</label>
@@ -15,6 +16,13 @@ block content
                 <input type="submit">
             </div>
         </form>
+
+        <form method="get" action="/finish">
+            <div>
+                <input type="submit" value="FInish the game">
+            </div>
+        </form>
+
     if dealtCardsPerUser
         .cardtable
             -   let dealt = dealtCardsPerUser;

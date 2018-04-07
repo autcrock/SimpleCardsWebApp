@@ -46,6 +46,17 @@ input:valid + span:after {
     margin: 1em;
     border: 1em solid gold;
     background-color: gold;
+    min-width: 13em;
+}
+
+@keyframes winnerAnimation {
+    from {
+        background-color: plum;
+    }
+
+    to {
+        background-color: yellow;
+    }
 }
 
 .winner {
@@ -53,6 +64,10 @@ input:valid + span:after {
     margin: 1em;
     border: 1em solid red;
     background-color: plum;
+    min-width: 13em;
+    animation-name: winnerAnimation;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
 }
 
 .player {
@@ -60,6 +75,7 @@ input:valid + span:after {
     margin: 1em;
     border: 1em solid plum;
     background-color: plum;
+    min-width: 13em;
 }
 
 .scoringtrump {

@@ -36,7 +36,7 @@ block content
                 each playerHand in hands
                     if (playerHand.score === winningScore)
                         .winner
-                            p Player: #{playerHand.player} scored: #{playerHand.score}
+                            p Winning Player : #{playerHand.player} scored: #{playerHand.score}
                             p Hand:
                             each card in playerHand.hand
                                 if (card.suit === trumps.suit)
@@ -54,6 +54,7 @@ block content
                                     else
                                         .scoringcard
                                             p #{card.name} of #{card.suit} (#{card.value}) 
+
                     else
                         .player
                             p Player: #{playerHand.player} scored: #{playerHand.score}

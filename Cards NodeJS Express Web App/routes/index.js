@@ -55,8 +55,9 @@ router.get('/finish', function (req, res) {
     db.close();
     res.render('finish',
         {
-            title: 'Simple Card Game is finished and gone, like your last pay cheque. Gone, gone away.'
-            , attribution: '(Paraphrasing the John Hiatt song: Gone)'
+            title: 'Simple Card Game is finished.'
+            , note1: 'Check the SQLite DB - "Cards NodeJS Express Web App/simple_card_game.db" for history.'
+            , note2: 'You can download the database browser at http://sqlitebrowser.org/ to do this.'
         });
 });
 

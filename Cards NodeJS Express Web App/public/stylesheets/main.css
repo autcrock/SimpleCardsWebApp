@@ -3,6 +3,12 @@
     font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
+form {
+    margin: 1em;
+    border: 1em solid gold;
+    background-color: gold;
+}
+
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -14,8 +20,8 @@
 
 .inputarea {
     margin: 1em;
-    border: 1em solid powderblue;
-    background-color: powderblue;
+    border: 1em solid gold;
+    background-color: gold;
 }
 
 input:invalid + span:after {
@@ -32,7 +38,7 @@ input:valid + span:after {
     display: flex;
     flex-wrap: wrap;
     margin: 1em;
-    background-color: darkseagreen;
+    background-color: green;
 }
 
 .dealer {
@@ -46,14 +52,14 @@ input:valid + span:after {
     float: left;
     margin: 1em;
     border: 1em solid red;
-    background-color: palegoldenrod;
+    background-color: plum;
 }
 
 .player {
     float: left;
     margin: 1em;
-    border: 1em solid palegoldenrod;
-    background-color: palegoldenrod;
+    border: 1em solid plum;
+    background-color: plum;
 }
 
 .scoringtrump {
@@ -74,8 +80,4 @@ input:valid + span:after {
 .zerocard {
     margin: 1px;
     background-color: darkgrey;
-}
-
-a {
-    color: #00B7FF;
 }

@@ -110,18 +110,22 @@ function cardSupport() {
         const trumpSuit = trumps.suit;
         let hands = [];
 
-        for (let handIndex = 0; handIndex < numberOfPlayers; handIndex++) {
-            const thisHand = dealToPlayer(handIndex, shuffledDeck);
+        for (let playerIndex = 0; playerIndex < numberOfPlayers; playerIndex++) {
+            const thisHand = dealToPlayer(playerIndex, shuffledDeck);
             const thisScore = addUp(trumpSuit, thisHand);
             const sortedHand = thisHand.sort((a, b) => b.score(trumpSuit) - a.score(trumpSuit));
-            hands[handIndex] = {hand: sortedHand, score: thisScore};
+            hands[playerIndex] = {player: playerIndex, hand: sortedHand, score: thisScore};
         }
 
         const sortedHands = hands.sort((a, b) => b.score - a.score);
-
+        const winningScore = hands[0].score;
+        const winners1 = hands.filter(x => x.score === winningScore);
+        const winners = winners1.map(x => x.player);
         return {
-            "trumps": trumps,
-            "handsByPlayerNumber": sortedHands
+            "trumps": trumps
+            ,"handsByPlayerNumber": sortedHands
+            , "winners": winners
+            , "winningScore": winningScore
         }
     }
 }

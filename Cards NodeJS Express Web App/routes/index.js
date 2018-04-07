@@ -3,19 +3,22 @@ var express = require('express');
 var router = express.Router();
 var sqlite3 = require('sqlite3').verbose();
 
-const db_name = "simple_card_game_db";
-var db = new sqlite3.Database(db_name);
+/* SQLite3 table and column names */
+const dbName = 'simple_card_game.db';
+const tableName = 'deals';
+const workingColumn1 = 'deal';
+const workingColumn2 = 'winners';
+const workingColumn3 = 'winningscore';
+
+var db = new sqlite3.Database(dbName);
 
 var CardSupport = require('../lib/CardSupport');
 var cards = new CardSupport();
 
-const table_name = 'deals';
-const working_column = 'deal';
-
 /* GET home page. */
 router.get('/', function (req, res) {
     db.serialize(function () {
-        db.run("CREATE TABLE IF NOT EXISTS " + table_name + " (" + working_column + " TEXT)");
+        db.run("CREATE TABLE IF NOT EXISTS " + tableName + " (" + workingColumn1 + " TEXT, " + workingColumn2 + " TEXT, " + workingColumn3 + " INTEGER, datetimestamp datetime)");
     });
     res.render('index', { title: 'Simple Card Game', dealtCardsPerUser: false });
 });
@@ -24,19 +27,18 @@ router.get('/', function (req, res) {
 router.get('/shuffle?', function (req, res) {
     var numberOfPlayers = parseInt(req.query.players);
     let theDeal;
-    if (!isNaN(numberOfPlayers) && numberOfPlayers <= 10) {
+    if (!isNaN(numberOfPlayers) && numberOfPlayers > 0 && numberOfPlayers <= 10) {
         theDeal = cards.getAndStoreDealFor(numberOfPlayers);
     } else {
         theDeal = {numberOfPlayersError: numberOfPlayers};
     }
 
-    const theDealString = JSON.stringify(theDeal);
     db.serialize(function () {
-        var stmt = db.prepare("INSERT INTO " + table_name + " VALUES (?)");
-        stmt.run(theDealString);
+        var stmt = db.prepare("INSERT INTO " + tableName + " VALUES (?, ?, ?, datetime('now'))");
+        stmt.run(JSON.stringify(theDeal), JSON.stringify(theDeal.winners), theDeal.winningScore);
         stmt.finalize();
 
-        db.each( "SELECT rowid AS id, " + table_name + "FROM " + table_name
+        db.each( "SELECT rowid AS id, " + tableName + "FROM " + tableName
                 , function (err, row) {
                     console.log("deal: " + row.id + ": " + row.info);
                 }, function () {
@@ -48,12 +50,12 @@ router.get('/shuffle?', function (req, res) {
     });
 });
 
-/* GET shuffle and deal for up to 10 players. */
+/* GET Finish game session. */
 router.get('/finish', function (req, res) {
     db.close();
     res.render('finish',
         {
-            title: 'Simple Card Game says - Gone - like your last pay cheque. Gone, gone away.'
+            title: 'Simple Card Game is finished and gone, like your last pay cheque. Gone, gone away.'
             , attribution: '(Paraphrasing the John Hiatt song: Gone)'
         });
 });

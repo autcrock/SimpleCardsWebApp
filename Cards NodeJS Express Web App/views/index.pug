@@ -19,7 +19,7 @@ block content
 
         <form method="get" action="/finish">
             <div>
-                <input type="submit" value="FInish the game">
+                <input type="submit" value="Finish the game">
             </div>
         </form>
 
@@ -30,14 +30,13 @@ block content
             -   let trumps = result.trumps;
             -   let hands = result.handsByPlayerNumber;
             -   let winningScore = hands[0].score
-            -   let multipleWinners = hands.length > 1 && (hands[0].score === hands[1].score)
                 .dealer
                     p Dealer holding trump:
                     p       #{trumps.name} of #{trumps.suit} 
-                each playerHand, playerIndex in hands
+                each playerHand in hands
                     if (playerHand.score === winningScore)
                         .winner
-                            p Player: #{playerIndex} scored: #{playerHand.score}
+                            p Player: #{playerHand.player} scored: #{playerHand.score}
                             p Hand:
                             each card in playerHand.hand
                                 if (card.suit === trumps.suit)
@@ -57,7 +56,7 @@ block content
                                             p #{card.name} of #{card.suit} (#{card.value}) 
                     else
                         .player
-                            p Player: #{playerIndex} scored: #{playerHand.score}
+                            p Player: #{playerHand.player} scored: #{playerHand.score}
                             p Hand:
                             each card in playerHand.hand
                                 if (card.suit === trumps.suit)

@@ -1,0 +1,9 @@
+﻿{
+  "References": [
+    { "Path": "./lib/CardSupport.js" }
+  ],
+
+  "Tests": [
+    { "Path": "./test/UnitTest.js" }
+  ]
+}

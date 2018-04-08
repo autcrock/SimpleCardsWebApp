@@ -102,8 +102,27 @@ function addUp(trumps, hand) {
     return total;
 }
 
+function isIntOrNoNonZeroDigits(value) {
+    if (typeof value !=="number") return false;
+    if (isNaN(value)) {
+        return false;
+    }
+    const x = parseFloat(value);
+    return (x | 0) === x;
+}
+
 function cardSupport() {
     this.getAndStoreDealFor = function (numberOfPlayers) {
+        if (!(isIntOrNoNonZeroDigits(numberOfPlayers))
+            || isNaN(numberOfPlayers)
+            || numberOfPlayers < 1
+            || numberOfPlayers > 10) {
+            return {
+                "error": "Number of players must be an integer between 1 and 10 inclusive."
+                , "numberOfPlayers": numberOfPlayers
+            }
+        }
+
         let theDeck = deck();
         const shuffledDeck = fisherYatesInPlace(theDeck);
         const trumps = shuffledDeck[0];

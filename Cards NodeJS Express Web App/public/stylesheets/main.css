@@ -5,8 +5,8 @@
 
 form {
     margin: 1em;
-    border: 1em solid gold;
-    background-color: gold;
+    border: 1em solid grey;
+    background-color: grey;
 }
 
 .container {
@@ -14,14 +14,14 @@ form {
     flex-wrap: wrap;
     margin: 1em;
     width: 100%;
-    border: 1px solid gray;
+    border: 1px solid grey;
 }
 
 
 .inputarea {
     margin: 1em;
-    border: 1em solid gold;
-    background-color: gold;
+    border: 1em solid grey;
+    background-color: grey;
 }
 
 input:invalid + span:after {
@@ -38,7 +38,7 @@ input:valid + span:after {
     display: flex;
     flex-wrap: wrap;
     margin: 1em;
-    background-color: green;
+    background-color: ghostwhite;
 }
 
 .dealer {
@@ -47,15 +47,16 @@ input:valid + span:after {
     border: 1em solid gold;
     background-color: gold;
     min-width: 13em;
+    font: 16px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 @keyframes winnerAnimation {
     from {
-        background-color: plum;
+        background-color: grey;
     }
 
     to {
-        background-color: yellow;
+        background-color: darkgrey;
     }
 }
 
@@ -63,7 +64,7 @@ input:valid + span:after {
     float: left;
     margin: 1em;
     border: 1em solid red;
-    background-color: plum;
+    background-color: grey;
     min-width: 13em;
     animation-name: winnerAnimation;
     animation-duration: 4s;
@@ -73,8 +74,8 @@ input:valid + span:after {
 .player {
     float: left;
     margin: 1em;
-    border: 1em solid plum;
-    background-color: plum;
+    border: 1em solid grey;
+    background-color: grey;
     min-width: 13em;
 }
 
@@ -85,7 +86,7 @@ input:valid + span:after {
 
 .zerotrump {
     margin: 1px;
-    background-color: lightgoldenrodyellow;
+    background-color: ghostwhite;
 }
 
 .scoringcard {
@@ -95,5 +96,9 @@ input:valid + span:after {
 
 .zerocard {
     margin: 1px;
-    background-color: darkgrey;
+    background-color: ghostwhite;
+}
+
+a {
+    color: #00B7FF;
 }

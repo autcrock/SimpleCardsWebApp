@@ -38,9 +38,12 @@
     <Compile Include="routes\users.js" />
     <Compile Include="test\UnitTest.js">
       <SubType>Code</SubType>
-      <TestFramework>Mocha</TestFramework>
+      <TestFramework>ExportRunner</TestFramework>
     </Compile>
     <Content Include=".gitignore" />
+    <Content Include="chutzpah.json">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="package.json" />
     <Content Include="public\stylesheets\main.css" />
     <Content Include="README.md" />
